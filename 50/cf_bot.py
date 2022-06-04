@@ -7,6 +7,7 @@ TOKEN = 'TOKEN'
 
 bot = commands.Bot(command_prefix='ps.')
 
+
 def query_codeforces(url):
     try:
         response = requests.get(url)
@@ -14,7 +15,7 @@ def query_codeforces(url):
         return None
 
     result = json.loads(response.content)
-    if result["status"] == "FAILED":
+    if result['status'] == 'FAILED':
         return None
     return result['result']
 
@@ -23,8 +24,7 @@ def query_codeforces(url):
 async def find_new_task(ctx, *args):
     seen_problems = set()
     for handle in args:
-        result = query_codeforces(
-            f"https://codeforces.com/api/user.status?handle={handle}")
+        result = query_codeforces(f'https://codeforces.com/api/user.status?handle={handle}')
         if not result:
             continue
 
@@ -32,8 +32,7 @@ async def find_new_task(ctx, *args):
             seen_problems.add(str(submission['problem'].get(
                 'contestId', '')) + submission['problem']['index'])
 
-    problems = query_codeforces(
-        'https://codeforces.com/api/problemset.problems')
+    problems = query_codeforces('https://codeforces.com/api/problemset.problems')
     if not problems:
         await ctx.send('Error on server(')
         return
