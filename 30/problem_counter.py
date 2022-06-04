@@ -4,7 +4,7 @@ import json
 handles = input().split()
 
 for handle in handles:
-    url = f'https://codeforces.com/api/user.status?handle={handle}&from=1'
+    url = f'https://codeforces.com/api/user.status?handle={handle}'
     try:
         response = requests.get(url)
     except requests.exceptions.RequestException as e:
