@@ -18,8 +18,7 @@ for handle in handles:
 
     solved = set()
     for submission in result['result']:
-        if submission['verdict'] == 'OK':
-            solved.add(str(submission['problem']['contestId']) + submission['problem']['index'])
+        solved.add(str(submission['problem']['contestId']) + submission['problem']['index'])
     
     print(handle, len(solved))
     
